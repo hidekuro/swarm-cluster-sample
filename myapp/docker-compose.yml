@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  web:
+    image: "nginx"
+    ports:
+      - 80:80
+    networks:
+      - mybackend
+
+networks:
+  mybackend:
+    driver: "overlay"
