@@ -33,7 +33,7 @@ try to access `http://$(docker-machine ip consul0)/ui`.
 
 Try `docker` command on swarm mode machine.
 
-```
+```bash
 docker $(docker-machine config --swarm manager0)
 ```
 
