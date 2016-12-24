@@ -43,7 +43,7 @@ for i in 0 1 2; do
     --virtualbox-hostonly-cidr 10.20.$i.1/24 \
     --engine-opt cluster-store=consul://$(docker-machine ip consul$i):8500 \
     --engine-label zone=zone$i \
-    --engine-label role=swarm-manager \
+    --engine-label role=manager \
     --swarm-master \
     --swarm-discovery consul://$(docker-machine ip consul$i):8500 \
     --swarm-strategy spread \
@@ -58,7 +58,7 @@ for i in 0 1 2; do
       -d virtualbox \
       --engine-opt cluster-store=consul://$(docker-machine ip consul$i):8500 \
       --engine-label zone=zone$i \
-      --engine-label role=swarm-worker \
+      --engine-label role=agent \
       --virtualbox-memory 512 \
       --virtualbox-hostonly-cidr 10.20.$i.1/24 \
       --swarm \
