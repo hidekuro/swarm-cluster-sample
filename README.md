@@ -26,7 +26,7 @@ The cluster shown below is created.
 
 Consul Web UI is available in all `consul*` machine.
 
-try to access `http://$(docker-machine ip consul0)/ui`.
+try to access `http://$(docker-machine ip consul0):8500/ui`.
 
 
 # Try Ops
