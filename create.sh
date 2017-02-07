@@ -17,13 +17,23 @@ cd $(dirname $0)
 #   | + worker-2-0
 #   | + worker-2-1
 
-# create manager machines
+# create machines
 for i in 0 1 2; do
+  # create manager machines
   docker-machine create \
     -d virtualbox \
     --virtualbox-memory="512" \
     --virtualbox-hostonly-cidr="10.20.${i}.1/24" \
     manager-${i}
+
+  # create worker machines
+  for n in 0 1; do
+    docker-machine create \
+      -d virtualbox \
+      --virtualbox-memory="512" \
+      --virtualbox-hostonly-cidr="10.20.${i}.1/24" \
+      worker-${i}-${n}
+  done
 done
 
 # init primary manager
@@ -45,16 +55,9 @@ for i in 1 2; do
       $(docker-machine ip manager-0):2377
 done
 
-# create worker machines
+# join workers to cluster
 for i in 0 1 2; do
   for n in 0 1; do
-    docker-machine create \
-      -d virtualbox \
-      --virtualbox-memory="512" \
-      --virtualbox-hostonly-cidr="10.20.${i}.1/24" \
-      worker-${i}-${n}
-
-    # join to manager
     docker-machine ssh worker-${i}-${n} \
       docker swarm join \
         --advertise-addr="$(docker-machine ip worker-${i}-${n})" \
