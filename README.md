@@ -122,6 +122,7 @@ scale-out
 
 ```bash
 docker service scale myapp_web=8
+docker stack ps myapp
 ```
 
 ```text
