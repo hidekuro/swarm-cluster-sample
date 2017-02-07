@@ -9,9 +9,9 @@ services:
       - "my-net"
     deploy:
       replicas: 6
-    placement:
-      constraints:
-        - node.role == worker
+      placement:
+        constraints:
+          - node.role == worker
 
 networks:
   my-net:
