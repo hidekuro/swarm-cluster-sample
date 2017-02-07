@@ -6,16 +6,16 @@ cd $(dirname $0)
 #
 # + zone-0 (10.20.0.0/24)
 #   + manager-0
-#   | + worker-0-0
-#   | + worker-0-1
+#     + worker-0-0
+#     + worker-0-1
 # + zone-1 (10.20.1.0/24)
 #   + manager-1
-#   | + worker-1-0
-#   | + worker-1-1
+#     + worker-1-0
+#     + worker-1-1
 # + zone-2 (10.20.2.0/24)
 #   + manager-2
-#   | + worker-2-0
-#   | + worker-2-1
+#     + worker-2-0
+#     + worker-2-1
 
 # create machines
 for i in 0 1 2; do
