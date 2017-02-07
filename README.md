@@ -22,50 +22,40 @@ The cluster shown below is created.
 
 ![cluster.png](cluster.png)
 
-# Consul Web UI
-
-Consul Web UI is available in all `consul*` machine.
-
-try to access `http://$(docker-machine ip consul0):8500/ui`.
-
-
 # Try Ops
 
 Try `docker` command on swarm mode machine.
 
 ```bash
-docker $(docker-machine config --swarm manager0)
+eval $(docker-machine config manager-0)
+docker info
+docker service ls
+docker stack ls
 ```
 
-You can use `docker-compose` in the same way.
+manager-0, manager-1, and manager-2 is "replicated manager nodes".
 
-```bash
-docker-compose $(docker-machine config --swarm manager0)
-```
-
-manager0, manager1, and manager2 is "replicated manager nodes".
-
-you can also use manager1 instead of manager0. The same is true for manager2.
+you can also use manager-1 instead of manager-0. The same is true for manager-2.
 
 ## Examples
 
 ### get swarm cluster info
 
 ```bash
-docker $(docker-machine config --swarm manager0) info
+docker $(docker-machine config manager-0) info
 ```
 
 ### deploy apps
 
 ```bash
 cd myapp
-docker-compose $(docker-machine config --swarm manager0) up -d
+docker-compose $(docker-machine config manager-0) up -d
 ```
 
 ### scale out docker-compose services
 
 ```bash
-docker-compose $(docker-machine config --swarm manager0) scale web=6
+docker-compose $(docker-machine config manager-0) scale web=6
 ```
 
 # Destroying
